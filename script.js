@@ -208,7 +208,7 @@ fetch(apiUrl)
     const allTds = listItem.querySelectorAll('td');
     allTds.forEach(td => {
       td.style.textAlign = 'start';
-      td.style.verticalAlign = 'middle';
+      // td.style.verticalAlign = 'middle';
     });
     // listItem.style.width = '100%';
      listDataTable.appendChild(listItem);
