@@ -201,8 +201,8 @@ fetch(apiUrl)
     listItem.appendChild(nameListElement);
     listItem.appendChild(priceChangePercentageElement);
     listItem.appendChild(priceElement);
-    listItem.appendChild(marketCapElement);
     listItem.appendChild(totalVolumeElement);
+    listItem.appendChild(marketCapElement);
     listItem.style.color="white";
     listItem.style.marginBottom="25px";
     const allTds = listItem.querySelectorAll('td');
