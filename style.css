@@ -172,7 +172,8 @@ body, ul, li {
 }
 #gridData div{
   background-color: #1B1B1B;
-  border-radius: 5px;
+  border-radius: 10px;
+
 }
   
 @media screen and (max-width: 768px) {
@@ -183,10 +184,17 @@ body, ul, li {
   }
 
 }
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
   #gridData{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px 3vw;
   }
+}
+
+table{
+  width:100% !important;
+}
+td{
+  text-align: center !important;
 }

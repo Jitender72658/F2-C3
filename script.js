@@ -97,11 +97,11 @@ fetch(apiUrl)
    priceChangePercentageElement.style.border="2px solid white";
     priceChangePercentageElement.style.padding= "5px 15px";
     priceChangePercentageElement.style.borderRadius="20px";
-    /* priceChangePercentageElement.style.width="50px"; */
+     priceChangePercentageElement.style.display="inline-block"; 
     
   
     const priceElement = document.createElement("p");
-    priceElement.textContent = "Price: $" + coin.current_price.toFixed(2);
+    priceElement.textContent = "$" + coin.current_price.toFixed(2);
     
     priceElement.style.fontWeight="bold";
     if(coin.price_change_percentage_24h>=0){
@@ -119,14 +119,14 @@ fetch(apiUrl)
     marketCapElement.textContent = "Market Cap: $" + coin.market_cap.toLocaleString();
 
     const totalVolumeElement = document.createElement("p");
-     totalVolumeElement.innerText = coin.total_volume;
+     totalVolumeElement.innerText = "Total Volume: " +coin.total_volume;
   
     // Append elements to list item
     gridItem.appendChild(logoAndNameDiv);
     gridItem.appendChild(priceChangePercentageElement);
     gridItem.appendChild(priceElement);
-    gridItem.appendChild(marketCapElement);
     gridItem.appendChild(totalVolumeElement);
+    gridItem.appendChild(marketCapElement);
     gridItem.style.color="white";
     gridItem.style.marginBottom="20px";
     gridItem.style.padding="15px 15px"
@@ -144,22 +144,27 @@ fetch(apiUrl)
 
   // Function to render a cryptocurrency in list view
  function renderCoinList(coin) {
-    const listItem =  document.createElement("div");
+    const listDataTable= document.getElementById('list-data-table');
+    const listItem =  document.createElement("tr");
     listItem.classList.add("list-item");
   
     // Create elements to display data
+     const imgElement = document.createElement('td');
     const elementLogo = document.createElement("img");
     elementLogo.src= coin.image;
     elementLogo.style.width="50px";
+     imgElement.appendChild(elementLogo);
 
-
+    const nameListElement = document.createElement("td");
     const nameDiv = document.createElement("div");
-    const symbolElement = document.createElement("h5");
+    const symbolElement = document.createElement("h6");
     symbolElement.innerText = coin.symbol.toUpperCase();
+    symbolElement.style.marginTop="5px";
     const nameElement = document.createElement("p");
     nameElement.textContent = coin.name;
     nameDiv.appendChild(symbolElement);
     nameDiv.appendChild(nameElement);
+    nameListElement.appendChild(nameDiv);
      
     const  priceChangePercentageElement = document.createElement("p");
     priceChangePercentageElement.innerText = coin.price_change_percentage_24h+" %";
@@ -167,9 +172,11 @@ fetch(apiUrl)
     priceChangePercentageElement.style.border="2px solid white";
     priceChangePercentageElement.style.padding= "5px 15px";
     priceChangePercentageElement.style.borderRadius="20px";
+    priceChangePercentageElement.style.display="inline-block"; 
+    priceChangePercentageElement.style.marginTop="13px";
     
   
-    const priceElement = document.createElement("p");
+    const priceElement = document.createElement("td");
     priceElement.textContent = "$" + coin.current_price.toFixed(2);
     priceElement.style.fontWeight="bold";
     if(coin.price_change_percentage_24h>=0){
@@ -183,24 +190,26 @@ fetch(apiUrl)
      priceChangePercentageElement.style.borderColor = "#A03B37";
    }
   
-    const marketCapElement = document.createElement("p");
+    const marketCapElement = document.createElement("td");
     marketCapElement.textContent = "$" + coin.market_cap.toLocaleString();
 
-    const totalVolumeElement = document.createElement("p");
+    const totalVolumeElement = document.createElement("td");
      totalVolumeElement.innerText = coin.total_volume;
   
     // Append elements to list item
-    listItem.appendChild(elementLogo);
-    listItem.appendChild(nameDiv);
+    listItem.appendChild(imgElement);
+    listItem.appendChild(nameListElement);
     listItem.appendChild(priceChangePercentageElement);
     listItem.appendChild(priceElement);
     listItem.appendChild(marketCapElement);
     listItem.appendChild(totalVolumeElement);
-    listItem.style.display="flex";
-    listItem.style.justifyContent="space-between";
-    listItem.style.alignItems="start";
     listItem.style.color="white";
-    listItem.style.marginBottom="20px";
-
-     listData.appendChild(listItem);
+    listItem.style.marginBottom="25px";
+    const allTds = listItem.querySelectorAll('td');
+    allTds.forEach(td => {
+      td.style.textAlign = 'start';
+      td.style.verticalAlign = 'middle';
+    });
+    // listItem.style.width = '100%';
+     listDataTable.appendChild(listItem);
   }
