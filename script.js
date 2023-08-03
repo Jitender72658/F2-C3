@@ -129,7 +129,20 @@ fetch(apiUrl)
     gridItem.appendChild(marketCapElement);
     gridItem.style.color="white";
     gridItem.style.marginBottom="20px";
-    gridItem.style.padding="15px 15px"
+    gridItem.style.padding="15px 15px";
+    gridItem.style.transition="transform 0.1s"
+    gridItem.addEventListener('mouseover', () => {
+      gridItem.style.transform="scale(1.1)";
+      gridItem.style.background="#333";
+      logoAndNameDiv.style.background="#333";
+      nameDiv.style.background="#333";
+    });
+    gridItem.addEventListener('mouseout', () => {
+      gridItem.style.transform="scale(1.0)";
+      gridItem.style.background="#1B1B1B";
+      logoAndNameDiv.style.background="#1B1B1B";
+      nameDiv.style.background="#1B1B1B";
+    });
     gridData.appendChild(gridItem);
 
   }
